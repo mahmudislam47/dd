@@ -1284,7 +1284,11 @@ function file_others(name, encoded_name, size, url, file_id, cookie_folder_id) {
 	// Add the container and card elements
 	var content = `
     <div class="container"><br>
-
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          ${navigation}
+        </ol>
+      </nav>
             <div class="card text-center">
             <div class="card-body text-center">
               <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>
@@ -1352,7 +1356,11 @@ function file_code(name, encoded_name, size, bytes, url, ext, file_id, cookie_fo
 	// Add the container and card elements
 	var content = `
     <div class="container"><br>
-  
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          ${navigation}
+        </ol>
+      </nav>
       <div class="card text-center">
         <div class="card-body text-center">
           <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>
@@ -1458,7 +1466,11 @@ function file_video(name, encoded_name, size, poster, url, mimeType, file_id, co
 	// Add the container and card elements
 	var content = `
     <div class="container text-center"><br>
-
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          ${navigation}
+        </ol>
+      </nav>
       <div class="card text-center">
         <div class="text-center">
           <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>${player}</div>
@@ -1582,7 +1594,11 @@ function file_audio(name, encoded_name, size, url, file_id, cookie_folder_id) {
 	// Add the container and card elements
 	var content = `
     <div class="container text-center"><br>
-
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          ${navigation}
+        </ol>
+      </nav>
       <div class="card text-center">
         <div class="text-center">
           <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>
@@ -1675,7 +1691,11 @@ function file_pdf(name, encoded_name, size, url, file_id, cookie_folder_id) {
 	// Add the container and card elements
 	var content = `
     <div class="container text-center"><br>
-
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          ${navigation}
+        </ol>
+      </nav>
     <div class="card">
     <div class="card-body text-center">
     <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>
@@ -1739,7 +1759,11 @@ function file_image(name, encoded_name, size, url, file_id, cookie_folder_id) {
 	// Add the container and card elements // wait until image is loaded and then hide spinner
 	var content = `
     <div class="container text-center"><br>
-
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          ${navigation}
+        </ol>
+      </nav>
       <div class="card">
         <div class="card-body text-center">
           <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>
