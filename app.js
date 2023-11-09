@@ -1466,45 +1466,11 @@ function file_video(name, encoded_name, size, poster, url, mimeType, file_id, co
 	// Add the container and card elements
 	var content = `
     <div class="container text-center"><br>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          ${navigation}
-        </ol>
-      </nav>
+
       <div class="card text-center">
         <div class="text-center">
-          <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>${player}</div>
+       
         </br>
-        ${UI.disable_video_download ? `` : `
-          <div class="card-body">
-          <div class="input-group mb-4">
-          <input type="text" class="form-control" id="dlurl" value="${url}" readonly>
-          </div>
-          <div class="btn-group text-center">
-              <a href="${url}" type="button" class="btn btn-primary">Download</a>
-              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="sr-only"></span>
-              </button>
-              <div class="dropdown-menu">
-              <a class="dropdown-item" href="iina://weblink?url=${url}">IINA</a>
-              <a class="dropdown-item" href="potplayer://${url}">PotPlayer</a>
-              <a class="dropdown-item" href="vlc://${url}">VLC Mobile</a>
-              <a class="dropdown-item" href="${url}">VLC Desktop</a>
-              <a class="dropdown-item" href="nplayer-${url}">nPlayer</a>
-              <a class="dropdown-item" href="intent://${url}#Intent;type=video/any;package=is.xyz.mpv;scheme=https;end;">mpv-android</a>
-              <a class="dropdown-item" href="mpv://${url_base64}">mpv x64</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;S.title=${encoded_name};end">MX Player (Free)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.pro;S.title=${encoded_name};end">MX Player (Pro)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
-              </div>
-          </div>
-          `+copyButton+copyFileBox+`
-          
-          </div>
-          </div>
-          `}
       </div>
     </div>
   `;
@@ -1572,74 +1538,21 @@ function file_audio(name, encoded_name, size, url, file_id, cookie_folder_id) {
 	var pathParts = path.split('/');
 	const copyFileBox = UI.allow_file_copy ? generateCopyFileBox(file_id, cookie_folder_id) : '';
 	// Generate the navigation based on path parts
-	var navigation = '';
-	var new_path = '';
-	for (var i = 0; i < pathParts.length; i++) {
-		var part = pathParts[i];
-		if (i == pathParts.length - 1) {
-			new_path += part + '?a=view'
-		} else {
-			new_path += part + '/'
-		}
-		if (part.length > 15) {
-			part = decodeURIComponent(part);
-			part = part.substring(0, 10) + '...';
-		}
-		if (part == '') {
-			part = 'Home'
-		}
-		navigation += '<a href="' + new_path + '" class="breadcrumb-item">' + part + '</a>';
-	}
 
 	// Add the container and card elements
 	var content = `
     <div class="container text-center"><br>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          ${navigation}
-        </ol>
-      </nav>
+   
       <div class="card text-center">
         <div class="text-center">
-          <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>
-          ${UI.disable_player ? `` : `
           <video id="aplayer" poster="${UI.audioposter}" muted=true class="video-js vjs-default-skin" controls preload="auto" width="100%" height="100%" data-setup='{"fluid": true}' style="--plyr-captions-text-color: #ffffff;--plyr-captions-background: #000000;">
             <source src="${url}" type="audio/mpeg" />
             <source src="${url}" type="audio/ogg" />
             <source src="${url}" type="audio/wav" />
-          </video>`}
+          </video>
         </div>
         </br>
-        ${UI.disable_audio_download ? `` : `
-          <div class="card-body">
-          <div class="input-group mb-4">
-          <input type="text" class="form-control" id="dlurl" value="${url}" readonly>
-          </div>
-          <div class="btn-group text-center">
-              <a href="${url}" type="button" class="btn btn-primary">Download</a>
-              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="sr-only"></span>
-              </button>
-              <div class="dropdown-menu">
-              <a class="dropdown-item" href="iina://weblink?url=${url}">IINA</a>
-              <a class="dropdown-item" href="potplayer://${url}">PotPlayer</a>
-              <a class="dropdown-item" href="vlc://${url}">VLC Mobile</a>
-              <a class="dropdown-item" href="${url}">VLC Desktop</a>
-              <a class="dropdown-item" href="nplayer-${url}">nPlayer</a>
-              <a class="dropdown-item" href="intent://${url}#Intent;type=audio/any;package=is.xyz.mpv;scheme=https;end;">mpv-android</a>
-              <a class="dropdown-item" href="mpv://${url_base64}">mpv x64</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;S.title=${encoded_name};end">MX Player (Free)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.pro;S.title=${encoded_name};end">MX Player (Pro)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
-              </div>
-          </div>
-          `+copyButton+copyFileBox+`
-          <br>
-          </div>
-          </div>
-          `}
+       
       </div>
     </div>
   `;
@@ -1717,26 +1630,6 @@ function file_image(name, encoded_name, size, url, file_id, cookie_folder_id) {
 	var path = window.location.pathname;
 	var pathParts = path.split('/');
 	const copyFileBox = UI.allow_file_copy ? generateCopyFileBox(file_id, cookie_folder_id) : '';
-	// Generate the navigation based on path parts
-	var navigation = '';
-	var new_path = '';
-	for (var i = 0; i < pathParts.length; i++) {
-		var part = pathParts[i];
-		if (i == pathParts.length - 1) {
-			new_path += part + '?a=view'
-		} else {
-			new_path += part + '/'
-		}
-		if (part.length > 15) {
-			part = decodeURIComponent(part);
-			part = part.substring(0, 10) + '...';
-		}
-		if (part == '') {
-			part = 'Home'
-		}
-		navigation += '<a href="' + new_path + '" class="breadcrumb-item">' + part + '</a>';
-	}
-
 	// Add the container and card elements // wait until image is loaded and then hide spinner
 	var content = `
     <div class="container text-center"><br>
@@ -1813,19 +1706,6 @@ window.onpopstate = function() {
 $(function() {
 	init();
 	var path = window.location.pathname;
-	/*$("body").on("click", '.folder', function () {
-	    var url = $(this).attr('href');
-	    history.pushState(null, null, url);
-	    render(url);
-	    return false;
-	});
-	$("body").on("click", '.view', function () {
-	    var url = $(this).attr('href');
-	    history.pushState(null, null, url);
-	    render(url);
-	    return false;
-	});*/
-
 	render(path);
 });
 
@@ -1876,56 +1756,6 @@ async function getCookie(name) {
 }
 
 // Copy File to User Drive
-async function copyFile(driveid) {
-	try {
-		const copystatus = document.getElementById('copystatus');
-		copystatus.innerHTML = `<div class='alert alert-danger' role='alert'> Processing... </div>`;
-
-		const user_folder_id = document.getElementById('user_folder_id').value;
-		if (user_folder_id === '') {
-			copystatus.innerHTML = `<div class='alert alert-danger' role='alert'> Empty ID </div>`;
-			return null;
-		}
-
-		document.getElementById('spinner').style.display = 'block';
-		document.cookie = `root_id=${user_folder_id}; expires=Thu, 18 Dec 2050 12:00:00 UTC`;
-		const time = Math.floor(Date.now() / 1000);
-		const response = await fetch('/copy', {
-			method: 'POST',
-			cache: 'no-cache',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: `id=${encodeURIComponent(driveid)}&root_id=${user_folder_id}&resourcekey=null&time=${time}`
-		});
-
-		if (response.status === 500) {
-			copystatus.innerHTML = `<div class='alert alert-danger' role='alert'> Unable to Copy File, Make Sure you've added system@zindex.eu.org to your Destination Folder </div>`;
-		} else if (response.status === 401) {
-			copystatus.innerHTML = `<div class='alert alert-danger' role='alert'> Unauthorized </div>`;
-		} else if (response.ok) {
-			const data = await response.json();
-			if (data && data.name) {
-				const link = `https://drive.google.com/file/d/${data.id}/view?usp=share_link`;
-				const copyresult = document.getElementById('copyresult');
-				copyresult.innerHTML = `<div class="col-12 col-md-12"> <input type="text" id="usercopiedfile" class="form-control" placeholder="Enter Your Folder ID to Copy this File" value="${link}" readonly></div> <div class="col-12 col-md-12"> <a href="${link}" target="_blank" style="margin-top: 5px;" class="btn btn-danger btn-block">Open Copied File</a></div>`;
-			} else if (data && data.error && data.error.message) {
-				copystatus.innerHTML = `<div class='alert alert-danger' role='alert'> ` + data.error.message + ` </div>`;
-			} else {
-				copystatus.innerHTML = `<div class='alert alert-danger' role='alert'> Unable to Copy File </div>`;
-			}
-		} else {
-			copystatus.innerHTML = `<div class='alert alert-danger' role='alert'> Unable to Copy File </div>`;
-		}
-
-		document.getElementById('spinner').style.display = 'none';
-	} catch (error) {
-		const copystatus = document.getElementById('copystatus');
-		copystatus.innerHTML = `<div class='alert alert-danger' role='alert'> An error occurred ` + error + `</div>`;
-		document.getElementById('spinner').style.display = 'none';
-	}
-}
-
 
 // create a MutationObserver to listen for changes to the DOM
 const observer = new MutationObserver(() => {
