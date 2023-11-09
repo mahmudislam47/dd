@@ -28,7 +28,7 @@ function init() {
   </div>
 </div>
 <br>
-
+<footer class="footer mt-auto py-3 text-muted ${UI.footer_style_class}" style="${UI.fixed_footer ?'position: fixed; ': ''}left: 0; bottom: 0; width: 100%; color: white; z-index: 9999;${UI.hide_footer ? ' display:none;': ' display:block;'}"> <div class="container" style="width: auto; padding: 0 10px;"> <p class="float-end"> <a href="#">Back to top</a> </p> ${UI.credit ? '<p>Redesigned with <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="red" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" /> </svg> by <a href="https://www.npmjs.com/package/@googledrive/index" target="_blank">TheFirstSpeedster</a>, based on Open Source Softwares.</p>' : ''} <p>© ${UI.copyright_year} - <a href=" ${UI.company_link}" target="_blank"> ${UI.company_name}</a>, All Rights Reserved.</p> </div> </footer>
   `;
 	$('body').html(html);
 }
@@ -80,7 +80,7 @@ function render(path) {
 		path = path.substr(0, path.indexOf("?"));
 	}
 	title(path);
-	// nav(path);
+	nav(path);
 	// .../0: This
 	var reg = /\/\d+:$/g;
 	if (path.includes("/fallback")) {
@@ -137,56 +137,56 @@ function title(path) {
 }
 
 // Render the navigation bar
-// function nav(path) {
-// 	var model = window.MODEL;
-// 	var html = "";
-// 	var cur = window.current_drive_order || 0;
-// 	html += `<nav class="navbar navbar-expand-lg${UI.fixed_header ?' fixed-top': ''} ${UI.header_style_class}">
-//     <div class="container-fluid">
-//   <a class="navbar-brand" href="/">${UI.logo_image ? '<img border="0" alt="'+UI.company_name+'" src="'+UI.logo_link_name+'" height="'+UI.logo_height+'" width="'+UI.logo_width+'">' : UI.logo_link_name}</a>
-//   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-//     <span class="navbar-toggler-icon"></span>
-//   </button>
-//   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-//     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-//       <li class="nav-item">
-//         <a class="nav-link" href="/${cur}:/">${UI.nav_link_1}</a>
-//       </li>`;
-// 	var names = window.drive_names;
-// 	var drive_name = window.drive_names[cur];
+function nav(path) {
+	var model = window.MODEL;
+	var html = "";
+	var cur = window.current_drive_order || 0;
+	html += `<nav class="navbar navbar-expand-lg${UI.fixed_header ?' fixed-top': ''} ${UI.header_style_class}">
+    <div class="container-fluid">
+  <a class="navbar-brand" href="/">${UI.logo_image ? '<img border="0" alt="'+UI.company_name+'" src="'+UI.logo_link_name+'" height="'+UI.logo_height+'" width="'+UI.logo_width+'">' : UI.logo_link_name}</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="/${cur}:/">${UI.nav_link_1}</a>
+      </li>`;
+	var names = window.drive_names;
+	var drive_name = window.drive_names[cur];
 
-// 	// Dropdown to select different drive roots.
-// 	html += `<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${drive_name}</a><div class="dropdown-menu" aria-labelledby="navbarDropdown">`;
-// 	names.forEach((name, idx) => {
-// 		html += `<a class="dropdown-item"  href="/${idx}:/">${name}</a>`;
-// 	});
-// 	html += `</div></li>`;
+	// Dropdown to select different drive roots.
+	html += `<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${drive_name}</a><div class="dropdown-menu" aria-labelledby="navbarDropdown">`;
+	names.forEach((name, idx) => {
+		html += `<a class="dropdown-item"  href="/${idx}:/">${name}</a>`;
+	});
+	html += `</div></li>`;
 
 
-// 	html += `<li class="nav-item">
-//     <a class="nav-link" href="${UI.contact_link}" target="_blank">${UI.nav_link_4}</a>
-//   </li>${UI.show_logout_button ?'<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>': ''}`;
+	html += `<li class="nav-item">
+    <a class="nav-link" href="${UI.contact_link}" target="_blank">${UI.nav_link_4}</a>
+  </li>${UI.show_logout_button ?'<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>': ''}`;
 
-// 	var search_text = model.is_search_page ? (model.q || '') : '';
-// 	var search_bar = `
-// </ul>
-// <form class="d-flex" method="get" action="/${cur}:search">
-// <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search" value="${search_text}" required>
-// <button class="btn ${UI.search_button_class}" onclick="if($('#search_bar_form>input').val()) $('#search_bar_form').submit();" type="submit">Search</button>
-// </form>
-// </div>
-// </div>
-// </nav>
-// `;
+	var search_text = model.is_search_page ? (model.q || '') : '';
+	var search_bar = `
+</ul>
+<form class="d-flex" method="get" action="/${cur}:search">
+<input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search" value="${search_text}" required>
+<button class="btn ${UI.search_button_class}" onclick="if($('#search_bar_form>input').val()) $('#search_bar_form').submit();" type="submit">Search</button>
+</form>
+</div>
+</div>
+</nav>
+`;
 
-// 	// Personal or team
-// 	if (model.root_type < 2) {
-// 		// Show search box
-// 		html += search_bar;
-// 	}
+	// Personal or team
+	if (model.root_type < 2) {
+		// Show search box
+		html += search_bar;
+	}
 
-// 	$('#nav').html(html);
-// }
+	$('#nav').html(html);
+}
 
 // Sleep Function to Retry API Calls
 function sleep(milliseconds) {
@@ -1691,15 +1691,9 @@ function file_pdf(name, encoded_name, size, url, file_id, cookie_folder_id) {
 	// Add the container and card elements
 	var content = `
     <div class="container text-center"><br>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          ${navigation}
-        </ol>
-      </nav>
+   
     <div class="card">
-    <div class="card-body text-center">
-    <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>
-    <div>
+  
     </div><br>
     <iframe src="https://docs.google.com/gview?url=${encodeURIComponent(url)}&embedded=true" style="width:100%; height:500px;" frameborder="0"></iframe>
     </div>
@@ -1707,20 +1701,7 @@ function file_pdf(name, encoded_name, size, url, file_id, cookie_folder_id) {
     <div class="input-group mb-4">
     <input type="text" class="form-control" id="dlurl" value="${url}" readonly>
     </div>
-    <div class="card-text text-center">
-    <div class="btn-group text-center">
-        <a href="${url}" type="button" class="btn btn-primary">Download</a>
-        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only"></span>
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-            <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-            <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
-        </div>
-    </div>
-    ` + copyButton + `
-    </div>
+   
     <br>
     
     </div>
@@ -1759,38 +1740,10 @@ function file_image(name, encoded_name, size, url, file_id, cookie_folder_id) {
 	// Add the container and card elements // wait until image is loaded and then hide spinner
 	var content = `
     <div class="container text-center"><br>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          ${navigation}
-        </ol>
-      </nav>
+   
       <div class="card">
         <div class="card-body text-center">
-          <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>
           <img src="${url}" id="load_image" width="100%">
-        </div>
-        <div class="card-body">
-          <div class="input-group mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="">Full URL</span>
-            </div>
-            <input type="text" class="form-control" id="dlurl" value="${url}" readonly>
-          </div>
-          <div class="card-text text-center">
-            <div class="btn-group text-center">
-              <a href="${url}" type="button" class="btn btn-primary">Download</a>
-              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only"></span>
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-                <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-                <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
-              </div>
-            </div>
-            ` + copyButton + copyFileBox + `
-          </div>
-          <br>
         </div>
       </div>
     </div>
