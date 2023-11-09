@@ -1,26 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Redesigned by telegram.dog/TheFirstSpeedster at https://www.npmjs.com/package/@googledrive/index which was written by someone else, credits are given on Source Page.
 // v2.3.5
 // Initialize the page
@@ -1968,11 +1945,4 @@ const options = {
 
 // observe changes to the body element
 observer.observe(document.documentElement, options);
-
-
-
-
-
-
-
 
