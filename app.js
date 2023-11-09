@@ -1466,15 +1466,9 @@ function file_video(name, encoded_name, size, poster, url, mimeType, file_id, co
 	// Add the container and card elements
 	var content = `
     <div class="container text-center"><br>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          ${navigation}
-        </ol>
-      </nav>
+
       <div class="card text-center">
         <div class="text-center">
-          <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>${player}</div>
-        </br>
         ${UI.disable_video_download ? `` : `
           <div class="card-body">
           <div class="input-group mb-4">
@@ -1485,24 +1479,8 @@ function file_video(name, encoded_name, size, poster, url, mimeType, file_id, co
               <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="sr-only"></span>
               </button>
-              <div class="dropdown-menu">
-              <a class="dropdown-item" href="iina://weblink?url=${url}">IINA</a>
-              <a class="dropdown-item" href="potplayer://${url}">PotPlayer</a>
-              <a class="dropdown-item" href="vlc://${url}">VLC Mobile</a>
-              <a class="dropdown-item" href="${url}">VLC Desktop</a>
-              <a class="dropdown-item" href="nplayer-${url}">nPlayer</a>
-              <a class="dropdown-item" href="intent://${url}#Intent;type=video/any;package=is.xyz.mpv;scheme=https;end;">mpv-android</a>
-              <a class="dropdown-item" href="mpv://${url_base64}">mpv x64</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;S.title=${encoded_name};end">MX Player (Free)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.pro;S.title=${encoded_name};end">MX Player (Pro)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
-              </div>
-          </div>
-          `+copyButton+copyFileBox+`
-          
-          </div>
+         
+ 
           </div>
           `}
       </div>
@@ -1648,41 +1626,19 @@ function file_pdf(name, encoded_name, size, url, file_id, cookie_folder_id) {
 
 	// Add the container and card elements
 	var content = `
-    <div class="container text-center"><br>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          ${navigation}
-        </ol>
-      </nav>
+    <div class="container text-center">
+    
     <div class="card">
     <div class="card-body text-center">
-    <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>
     <div>
-    </div><br>
+    </div>
     <iframe src="https://docs.google.com/gview?url=${encodeURIComponent(url)}&embedded=true" style="width:100%; height:500px;" frameborder="0"></iframe>
     </div>
     <div class="card-body">
     <div class="input-group mb-4">
     <input type="text" class="form-control" id="dlurl" value="${url}" readonly>
     </div>
-    <div class="card-text text-center">
-    <div class="btn-group text-center">
-        <a href="${url}" type="button" class="btn btn-primary">Download</a>
-        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only"></span>
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-            <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-            <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
-        </div>
-    </div>
-    ` + copyButton + `
-    </div>
-    <br>
-    
-    </div>
-    </div>
+  
     </div>  
   `;
 	$("#content").html(content);
@@ -1717,16 +1673,9 @@ function file_image(name, encoded_name, size, url, file_id, cookie_folder_id) {
 	// Add the container and card elements // wait until image is loaded and then hide spinner
 	var content = `
     <div class="container text-center"><br>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          ${navigation}
-        </ol>
-      </nav>
+    
       <div class="card">
-        <div class="card-body text-center">
-          <div class="${UI.file_view_alert_class}" id="file_details" role="alert">${name}<br>${size}</div>
-          <img src="${url}" id="load_image" width="100%">
-        </div>
+      
         <div class="card-body">
           <div class="input-group mb-4">
             <div class="input-group-prepend">
@@ -1734,21 +1683,8 @@ function file_image(name, encoded_name, size, url, file_id, cookie_folder_id) {
             </div>
             <input type="text" class="form-control" id="dlurl" value="${url}" readonly>
           </div>
-          <div class="card-text text-center">
-            <div class="btn-group text-center">
-              <a href="${url}" type="button" class="btn btn-primary">Download</a>
-              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only"></span>
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-                <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-                <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
-              </div>
-            </div>
-            ` + copyButton + copyFileBox + `
-          </div>
-          <br>
+       
+         
         </div>
       </div>
     </div>
@@ -1945,4 +1881,3 @@ const options = {
 
 // observe changes to the body element
 observer.observe(document.documentElement, options);
-
